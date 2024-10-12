@@ -1,0 +1,9 @@
+name: oebb-bot
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - conda-forge::python-telegram-bot
+  - conda-forge::python-dotenv
+  - ipykernel
+  - requests
