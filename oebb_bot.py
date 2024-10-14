@@ -4,17 +4,15 @@ import asyncio
 from datetime import datetime
 from telegram import Bot 
 
-
 dotenv.load_dotenv()
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 BOOKING_DATE = datetime.strptime(os.getenv("BOOKING_DATE"), "%Y-%m-%d")
-
 
 async def send_message(bot, message, chat_id):
     await bot.send_message(text=message, chat_id=chat_id)
 
-if __name__ == "__main__":
+def main():
     bot = Bot(token=TELEGRAM_BOT_TOKEN)
     page_data = requests.post("https://www.nightjet.com/nj-booking-ocp/init/start", json={"lang": "en"})
 
@@ -28,4 +26,7 @@ if __name__ == "__main__":
     else:
         message = "😢 Couldn't get required data from Nightjet booking website."
 
-    asyncio.run(send_message(bot, message, chat_id=CHAT_ID))
+    asyncio.run(send_message(bot, message, chat_id=TELEGRAM_CHAT_ID))
+
+if __name__ == "__main__":
+    main()
