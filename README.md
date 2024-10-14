@@ -19,16 +19,16 @@ The date the script will check for is defined in the `.env` file as well.
 You can change it under `BOOKING_DATE` key using `YYYY-mm-dd` format.
 
 ## Deploying
-To sure the script periodically checks the booking availability (and if don't have access to  24/7 running system where you can schedule this), I recommend deploying to Modal (*the 30$ of credits you currently get with free tier should cover you completely here*).
+To run the bot periodically (if don't have access to your own 24/7 running system), I recommend deploying to Modal (*the 30$ of credits you currently get with free tier should cover you completely*).
 
 1. Go to [modal.com](https://modal.com/) and create a new account
 2. `pip install modal`
 3. `python -m modal setup`
 4. `modal deploy modal_deploy.py`
 
-The [modal_deploy.py](./modal_deploy.py) contains all the deployment parameters , including the scheduling. To adjust the scheduled run times, you can either use:
+The [modal_deploy.py](./modal_deploy.py) contains all the deployment parameters , including the scheduling. To adjust the scheduled run times, you can use:
 
  * `schedule=modal.Period(days=1)`          to simply run daily
- * or `schedule=modal.Cron("00 07,17 * * *")`  using Cron syntax to run daily eg. at 7:00 & 17:00*
+ * `schedule=modal.Cron("00 07,17 * * *")`  Cron to run daily eg. at 7:00 & 17:00*
 
-*the Cron times are in UTC time, so don't forget to adjust for your local time zone
+*the cron syntax uses UTC time, so don't forget to adjust for your local time zone
