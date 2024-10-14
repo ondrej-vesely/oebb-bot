@@ -13,7 +13,8 @@ image = (
 @app.function(
     image=image,
     secrets=[modal.Secret.from_dotenv()],
-    schedule=modal.Period(days=1),
+    #schedule=modal.Period(days=1),         # run daily
+    schedule=modal.Cron("00 07,17 * * *"),  # run daily at 7:00 & 17:00
 )
 def main():
     oebb_bot.main()
